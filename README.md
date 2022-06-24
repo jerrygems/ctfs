@@ -1,2 +1,2 @@
 # ctfs
-all the writeups written by me you can find here
+all the writeups written by jerry may find here
