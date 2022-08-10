@@ -150,6 +150,38 @@ GENERATED WORDS: 4612
 **********
 </pre>
 
+<h3>I further enumerated directories</h3>
+<pre>
+┌[linspace]─[14:37-10/08]─[/home/sp1d3y]
+└╼sp1d3y$dirb http://hack.thm/nagiosxi/ /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt 
+
+DIRB v2.22    
+By The Dark Raver
+
+START_TIME: Wed Aug 10 14:37:27 2022
+URL_BASE: http://hack.thm/nagiosxi/
+WORDLIST_FILES: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt
+
+
+GENERATED WORDS: 81628                                                         
+
+---- Scanning URL: http://hack.thm/nagiosxi/ ----
+==> DIRECTORY: http://hack.thm/nagiosxi/images/                                   
+==> DIRECTORY: http://hack.thm/nagiosxi/about/                                    
+==> DIRECTORY: http://hack.thm/nagiosxi/help/                                     
+==> DIRECTORY: http://hack.thm/nagiosxi/tools/                                    
+==> DIRECTORY: http://hack.thm/nagiosxi/admin/                                    
+==> DIRECTORY: http://hack.thm/nagiosxi/reports/                                  
+==> DIRECTORY: http://hack.thm/nagiosxi/account/                                  
+==> DIRECTORY: http://hack.thm/nagiosxi/includes/                                 
+==> DIRECTORY: http://hack.thm/nagiosxi/backend/                                  
+==> DIRECTORY: http://hack.thm/nagiosxi/db/                                       
+==> DIRECTORY: http://hack.thm/nagiosxi/api/                                      
+==> DIRECTORY: http://hack.thm/nagiosxi/config/                                   
+==> DIRECTORY: http://hack.thm/nagiosxi/views/                                    
+^C> Testing: http://hack.thm/nagiosxi/1427  
+</pre>
+
 <h3><b>I also did directory enumeration but didn't got the lead so ("directory enum")</b></h3>
 
 
