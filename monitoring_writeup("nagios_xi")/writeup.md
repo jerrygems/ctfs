@@ -1,6 +1,6 @@
 ### to complete this ctf i used to perform simple enumeration the machine
 
-*************
+<pre>
 ### firstly added the ip to hosts
 
 192.168.49.126  my.addr
@@ -11,7 +11,7 @@
 ::1        localhost ip6-localhost ip6-loopback
 ff02::1    ip6-allnodes
 ff02::2    ip6-allrouters
-*************
+</pre>
 
 *************
 ###then i did network scan and i found some ports opened as shown below (firstly i did scan with rust and then i did nmap scan on ports found in rust scan)
