@@ -123,16 +123,16 @@ Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 ┌[linspace]─[14:32-10/08]─[/home/sp1d3y]
 └╼sp1d3y$dirb http://hack.thm
 
------------------
+
 DIRB v2.22    
 By The Dark Raver
------------------
+
 
 START_TIME: Wed Aug 10 14:32:31 2022
 URL_BASE: http://hack.thm/
 WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
 
------------------
+
 
 GENERATED WORDS: 4612                                                          
 
