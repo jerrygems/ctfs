@@ -182,7 +182,7 @@ GENERATED WORDS: 81628
 ^C> Testing: http://hack.thm/nagiosxi/1427  
 </pre>
 
-<h3><b>I also did directory enumeration but didn't got the lead so ("directory enum")</b></h3>
+<h3><b>But i didn't got the lead so ("directory enum")</b></h3>
 
 
 <h3><b>I tried to brute force that login form</b></h3>
