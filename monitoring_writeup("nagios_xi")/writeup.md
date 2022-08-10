@@ -114,11 +114,11 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 </pre>
 
-<h3><b><i>During this network scan i was trying to find something on port 80 and i found that port 80 runs a servie called nagios_xi monitoring tool</h3></b></i>
+<h3><b>During this network scan i was trying to find something on port 80 and i found that port 80 runs a servie called nagios_xi monitoring tool</b></h3>
 
 <h3><b>Then i found a login page on the port 80 as shown below</b></h3>
 
-<h3><b><i>I also did directory enumeration but didn't got the lead so ("directory enum")</b></h3>
+<h3><b>I also did directory enumeration but didn't got the lead so ("directory enum")</b></h3>
 <h3><b>I tried to brute force that login form</b></h3>
 
 <pre>
