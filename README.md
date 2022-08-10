@@ -1,2 +1,2 @@
 # ctfs
-**all the writeups written by jerry("Sp1d3y") you may find here**
+**All the writeups written by _J3rry("Sp1d3y")_ you may find here**
