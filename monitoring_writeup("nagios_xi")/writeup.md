@@ -1,4 +1,4 @@
-### to complete this ctf i used to perform simple enumeration the machine
+### Nagios_XI_writeup 
 
 ### 1. Firstly added the ip to hosts
 <pre>
@@ -176,10 +176,12 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2022-08-10 15:44:
 </pre>
 
 <h3>But none of these credentials worked may be bcuz i did something wrong in command</h3>
-###then i looked at nmap scan again and looked for other ports but didn't find good stuff
+<h3>Then i looked at nmap scan again and looked for other ports but didn't find good stuff</h3>
 
 
-###then i tried for finding any exploit for nagiosxi service and i found an RCE ("https://www.exploit-db.com/exploits/48191")
+
+<h3>Then i tried for finding any exploit for nagiosxi service that i found on port 80</h3> 
+<h3>I found an RCE ("https://www.exploit-db.com/exploits/48191")</h3>
 ###then opened the metasploit and searched for this rce in metasploit database
 ********************************
 
