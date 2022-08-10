@@ -114,11 +114,41 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 </pre>
 
-<h3><b>During this network scan i was trying to find something on port 80 and i found that port 80 runs a servie called nagios_xi monitoring tool</b></h3>
+<h3><b>During this network scan i was trying to find something on port 80 and i found that port 80 runs a service called NAGIOS_XI monitoring tool</b></h3>
 
 <h3><b>Then i found a login page on the port 80 as shown below</b></h3>
+<h2> Directory Enumeration</h2>
+<pre>
+┌[linspace]─[14:32-10/08]─[/home/sp1d3y]
+└╼sp1d3y$dirb http://hack.thm
 
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Wed Aug 10 14:32:31 2022
+URL_BASE: http://hack.thm/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: http://hack.thm/ ----
++ http://hack.thm/cgi-bin/ (CODE:403|SIZE:273)                                 
++ http://hack.thm/index.php (CODE:200|SIZE:3245)                               
+==> DIRECTORY: http://hack.thm/javascript/                                     
++ http://hack.thm/nagios (CODE:401|SIZE:455)                                   
++ http://hack.thm/server-status (CODE:403|SIZE:273)                            
+                                                                               
+---- Entering directory: http://hack.thm/javascript/ ----
+==> DIRECTORY: http://hack.thm/javascript/jquery/                              
+^C> Testing: http://hack.thm/javascript/today 
+</pre>
 <h3><b>I also did directory enumeration but didn't got the lead so ("directory enum")</b></h3>
+
+
 <h3><b>I tried to brute force that login form</b></h3>
 
 <pre>
