@@ -1,7 +1,7 @@
 ### to complete this ctf i used to perform simple enumeration the machine
 
-<pre>
 ### firstly added the ip to hosts
+<pre>
 
 192.168.49.126  my.addr
 192.168.126.136 hack.thm
@@ -13,10 +13,11 @@ ff02::1    ip6-allnodes
 ff02::2    ip6-allrouters
 </pre>
 
-*************
+
 ###then i did network scan and i found some ports opened as shown below (firstly i did scan with rust and then i did nmap scan on ports found in rust scan)
 
 ##rustscan-results
+<pre>
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$rustscan -a hack.thm
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
@@ -69,8 +70,10 @@ PORT     STATE SERVICE REASON
 
 Read data files from: /usr/bin/../share/nmap
 Nmap done: 1 IP address (1 host up) scanned in 0.43 seconds
+</pre>
 
 ##nmap-results
+<pre>
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$nmap -A -sV -p 22,25,80,389,443,5667 hack.thm 
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-10 14:27 IST
@@ -107,7 +110,7 @@ Service Info: Hosts:  ubuntu, 127.0.0.1; OS: Linux; CPE: cpe:/o:linux:linux_kern
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
-*************
+</pre>
 
 ###during this network scan i was trying to find something on port 80 and i found that port 80 runs a servie called nagios_xi monitoring tool
 
