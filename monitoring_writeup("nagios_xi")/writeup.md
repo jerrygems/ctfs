@@ -119,6 +119,7 @@ Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 <h3><b>Then i found a login page on the port 80 as shown below</b></h3>
 <h2> Directory Enumeration</h2>
 <pre>
+***********
 ┌[linspace]─[14:32-10/08]─[/home/sp1d3y]
 └╼sp1d3y$dirb http://hack.thm
 
@@ -143,9 +144,10 @@ GENERATED WORDS: 4612
 + http://hack.thm/server-status (CODE:403|SIZE:273)                            
                                                                                
 ---- Entering directory: http://hack.thm/javascript/ ----
-==> DIRECTORY: http://hack.thm/javascript/jquery/                              
-^C> Testing: http://hack.thm/javascript/today 
+==> DIRECTORY: http://hack.thm/javascript/jquery/    
+**********
 </pre>
+
 <h3><b>I also did directory enumeration but didn't got the lead so ("directory enum")</b></h3>
 
 
