@@ -1,7 +1,7 @@
 ### Nagios_XI_writeup 
 
 ### 1. Firstly added the ip to hosts
-<pre style="background:black;color:green;">
+<pre>
 
 192.168.49.126  my.addr
 192.168.126.136 hack.thm
@@ -19,7 +19,7 @@ ff02::2    ip6-allrouters
 
 <h3><b>rustscan-results</b></h3>
 
-<pre style="background:black;color:green;">
+<pre>
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$rustscan -a hack.thm
 .----. .-. .-. .----..---.  .----. .---.   .--.  .-. .-.
@@ -75,7 +75,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.43 seconds
 </pre>
 
 <h3><b>nmap-results</b></h3>
-<pre style="background:black;color:green;">
+<pre>
 ┌[linspace]─[14:27-10/08]─[/home/sp1d3y]
 └╼sp1d3y$nmap -A -sV -p 22,25,80,389,443,5667 hack.thm 
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-08-10 14:27 IST
@@ -120,7 +120,7 @@ Nmap done: 1 IP address (1 host up) scanned in 24.08 seconds
 
 
 <h3>Meanwhile I Did Directory Enumeration</h3>
-<pre style="background:black;color:green;">
+<pre>
 ***********
 ┌[linspace]─[14:32-10/08]─[/home/sp1d3y]
 └╼sp1d3y$dirb http://hack.thm
@@ -151,7 +151,7 @@ GENERATED WORDS: 4612
 </pre>
 
 <h3>I further enumerated directories</h3>
-<pre  style="background:black;color:green;">
+<pre>
 ┌[linspace]─[14:37-10/08]─[/home/sp1d3y]
 └╼sp1d3y$dirb http://hack.thm/nagiosxi/ /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt 
 
@@ -187,7 +187,7 @@ GENERATED WORDS: 81628
 
 <h3><b>Tried to brute force that login form</b></h3>
 
-<pre style="background:black;color:green;">
+<pre>
 ┌[linspace]─[15:42-10/08]─[/home/sp1d3y]
 └╼sp1d3y$ hydra hack.thm http-post-form '/nagiosxi/login.php:username=^USER^&password=^PASS^:login' -L user.txt -P /usr/share/wordlists/rockyou.txt -t 64
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
