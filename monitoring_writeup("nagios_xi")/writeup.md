@@ -14,7 +14,9 @@ ff02::2    ip6-allrouters
 </pre>
 
 
-###then i did network scan and i found some ports opened as shown below (firstly i did scan with rust and then i did nmap scan on ports found in rust scan)
+<h3><b>
+ then i did network scan and i found some ports opened as shown below (firstly i did scan with rust and then i did nmap scan on ports found in rust scan)
+ </b></h3>
 
 ##rustscan-results
 <pre>
